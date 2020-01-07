@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+ <!--1 扫描包 -->
+ <context:component-scan base-package="com.xqy">
+   <!-- 排除扫描 去除controller -->
+   <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+ </context:component-scan>
+ 
+ <!--2 引入外部properties文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	<!--3 使用druid数据源连接数据库 -->
+	 <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+	   <property name="driverClassName" value="${jdbc.driver}"></property>
+	   <property name="url" value="${jdbc.url}"></property>
+	   <property name="username" value="${jdbc.username}"></property>
+	   <property name="password" value="${jdbc.password}"></property>
+	</bean>
+  <!-- 4 sqlsessionFacotryBean 即:spring和mybatis的整合类 -->
+  <bean  id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+  
+    <!-- 配置数据源 -->
+    <property name="dataSource" ref="dataSource"/>
+    <!-- 读取mybatis配置文件 -->
+    <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+    <!-- mapper映射文件 -->
+    <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    <!-- 配置别名 -->
+    <property name="typeAliasesPackage" value="com.xqy.entity" />
+  </bean>
+
+<!--5  配置扫描mapper接口的类 -->
+ <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+  <property name="basePackage" value="com.xqy.dao"></property>
+ 
+ </bean>
+ 
+ <aop:aspectj-autoproxy/>
+ 
+ <bean  id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"></property>
+ 
+ </bean>
+
+ <!--6、 配置事务 transaction-manager:表示关联的事务管理器是谁 -->
+	<tx:advice transaction-manager="transactionManager"
+		id="txAdvice">
+		<!-- 事务属性配置 -->
+		<tx:attributes>
+			<!-- 以find.select get开头的方法为只读事务，用来提高数据库的性能 -->
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="load*" read-only="true" />
+			<tx:method name="list*" read-only="true" />
+			<!-- 其他的方法为默认事务 -->
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 7、配置aop -->
+	<aop:config>
+		<!-- 配置切点表达式 -->
+		<aop:pointcut
+			expression="execution(* com.xqy.service.*.*(..))" id="pointcut" />
+		<!-- 关联事务 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
+
+	</aop:config>
+	
+</beans>
