@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xqy.dao.ArticleDao">
+	<select id="select" resultType="Article">
+		SELECT * FROM cms_article
+	</select>
+
+	<select id="selectById" resultType="Article">
+		SELECT * FROM cms_article
+		WHERE id=#{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO
+		cms_article(title,content,picture,channel_id,category_id,user_id,hits,hot,status,deleted,created,updated,commentCnt,tousuCnt)VALUES
+		(#{title},#{content},#{picture},#{channel_id},#{category_id},#{user_id},#{hits},#{hot},#{status},#{deleted},#{created},#{updated},#{commentCnt},#{tousuCnt})
+	</insert>
+
+	<update id="update">
+		UPDATE cms_article
+		SET
+		title=#{title},content=#{content},picture=#{picture},channel_id=#{channel_id},category_id=#{category_id},user_id=#{user_id},hits=#{hits},hot=#{hot},status=#{status},deleted=#{deleted},created=#{created},updated=#{updated},commentCnt=#{commentCnt},tousuCnt=#{tousuCnt}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM cms_article WHERE id in(${ids})
+	</delete>
+</mapper>

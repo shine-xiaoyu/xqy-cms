@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xqy.dao.UserDao">
+	<select id="select" resultType="user">
+		SELECT * FROM cms_user
+	</select>
+
+	<select id="selectById" resultType="user">
+		SELECT * FROM cms_user WHERE
+		id=#{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO
+		cms_user(username,headimg,password,nickname,birthday,gender,locked,score,role,url,create_time,update_time)VALUES
+		(#{username},#{headimg},#{password},#{nickname},#{birthday},#{gender},#{locked},#{score},#{role},#{url},#{create_time},#{update_time})
+	</insert>
+
+	<update id="update">
+		UPDATE cms_user
+		SET
+		username=#{username},headimg=#{headimg},password=#{password},nickname=#{nickname},birthday=#{birthday},gender=#{gender},locked=#{locked},score=#{score},role=#{role},url=#{url},create_time=#{create_time},update_time=#{update_time}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM cms_user WHERE id in(${ids})
+	</delete>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xqy.dao.CommentDao">
+	<select id="select" resultType="Comment">
+		SELECT * FROM cms_comment
+	</select>
+
+	<select id="selectById" resultType="Comment">
+		SELECT * FROM cms_comment
+		WHERE id=#{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO
+		cms_comment(articleId,userId,content,created)VALUES
+		(#{articleId},#{userId},#{content},#{created})
+	</insert>
+
+	<update id="update">
+		UPDATE cms_comment
+		SET
+		articleId=#{articleId},userId=#{userId},content=#{content},created=#{created}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM cms_comment WHERE id in(${ids})
+	</delete>
+</mapper>

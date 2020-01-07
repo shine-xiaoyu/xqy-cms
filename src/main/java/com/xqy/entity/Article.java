@@ -2,23 +2,39 @@ package com.xqy.entity;
 
 import java.util.Date;
 
+//文章表
 public class Article {
 
+	/**  **/
 	private Integer id;
-	private String title;// '标题'
-	private String content;// 文章内容
-	private String picture;// 标题图片
-	private Integer channel_id;// 所属栏目
-	private Integer category_id;// 所属分类
-	private Integer user_id;// 用户Id
-	private Integer hits;// 点击次数
-	private Integer hot;// 是否热门
-	private Integer status;// '0：刚发布；2：草稿；1审核通过；-1 审核未通过;3:禁用'
-	private Integer deleted;// '0:正常,1:删除',
-	private Date created;// '发布时间'
-	private Date updated;// '更新时间',
-	private String commentCnt;// 评论数量
-	private Integer tousuCnt;// 投诉次数
+	/** 标题 **/
+	private String title;
+	/** 文章内容 **/
+	private String content;
+	/** 标题图片 **/
+	private String picture;
+	/** 所属栏目 **/
+	private Integer channel_id;
+	/** 所属分类 **/
+	private Integer category_id;
+	/** 用户Id **/
+	private Integer user_id;
+	/** 点击次数 **/
+	private Integer hits;
+	/** 是否热门 **/
+	private Integer hot;
+	/** 0：刚发布；2：草稿；1审核通过；-1 审核未通过;3:禁用 **/
+	private Integer status;
+	/** 0:正常,1:删除 **/
+	private Integer deleted;
+	/** 发布时间 **/
+	private Date created;
+	/** 更新时间 **/
+	private Date updated;
+	/** 评论数量 **/
+	private Integer commentCnt;
+	/** 投诉次数 **/
+	private Integer tousuCnt;
 
 	public Integer getId() {
 		return id;
@@ -124,11 +140,11 @@ public class Article {
 		this.updated = updated;
 	}
 
-	public String getCommentCnt() {
+	public Integer getCommentCnt() {
 		return commentCnt;
 	}
 
-	public void setCommentCnt(String commentCnt) {
+	public void setCommentCnt(Integer commentCnt) {
 		this.commentCnt = commentCnt;
 	}
 

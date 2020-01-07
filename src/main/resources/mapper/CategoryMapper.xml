@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xqy.dao.CategoryDao">
+	<select id="select" resultType="Category">
+		SELECT * FROM cms_category
+	</select>
+
+	<select id="selectById" resultType="Category">
+		SELECT * FROM cms_category
+		WHERE id=#{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO cms_category(name,channel_id)VALUES
+		(#{name},#{channel_id})
+	</insert>
+
+	<update id="update">
+		UPDATE cms_category
+		SET name=#{name},channel_id=#{channel_id}
+		WHERE id=#{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM cms_category WHERE id in(${ids})
+	</delete>
+</mapper>
