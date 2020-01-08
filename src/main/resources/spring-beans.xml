@@ -33,7 +33,7 @@
     <!-- mapper映射文件 -->
     <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     <!-- 配置别名 -->
-    <property name="typeAliasesPackage" value="com.xqy.cms.entity" />
+    <property name="typeAliasesPackage" value="com.xqy.cms.pojo" />
   </bean>
 
 <!--5  配置扫描mapper接口的类 -->
