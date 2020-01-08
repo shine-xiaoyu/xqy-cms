@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xqy.dao.Article_tagDao">
+<mapper namespace="com.xqy.cms.dao.Article_tagDao">
 	<select id="select" resultType="Article_tag">
 		SELECT * FROM cms_article_tag
 	</select>
