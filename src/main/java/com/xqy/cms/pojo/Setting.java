@@ -1,4 +1,4 @@
-package com.xqy.cms.entity;
+package com.xqy.cms.pojo;
 
 public class Setting {
 

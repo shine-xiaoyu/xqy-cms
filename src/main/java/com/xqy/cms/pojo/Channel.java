@@ -1,4 +1,4 @@
-package com.xqy.cms.entity;
+package com.xqy.cms.pojo;
 
 //所属栏目表
 public class Channel {

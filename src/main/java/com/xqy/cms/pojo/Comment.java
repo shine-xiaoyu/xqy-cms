@@ -1,4 +1,4 @@
-package com.xqy.cms.entity;
+package com.xqy.cms.pojo;
 
 //评论表
 public class Comment {

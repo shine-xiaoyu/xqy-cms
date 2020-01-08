@@ -1,4 +1,4 @@
-package com.xqy.cms.entity;
+package com.xqy.cms.pojo;
 
 //投票内容表
 public class Vote_content {
