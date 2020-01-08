@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
  <!--1 扫描包 -->
- <context:component-scan base-package="com.xqy">
+ <context:component-scan base-package="com.xqy.cms">
    <!-- 排除扫描 去除controller -->
    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
  </context:component-scan>
@@ -33,12 +33,12 @@
     <!-- mapper映射文件 -->
     <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     <!-- 配置别名 -->
-    <property name="typeAliasesPackage" value="com.xqy.entity" />
+    <property name="typeAliasesPackage" value="com.xqy.cms.entity" />
   </bean>
 
 <!--5  配置扫描mapper接口的类 -->
  <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-  <property name="basePackage" value="com.xqy.dao"></property>
+  <property name="basePackage" value="com.xqy.cms.dao"></property>
  
  </bean>
  
@@ -68,7 +68,7 @@
 	<aop:config>
 		<!-- 配置切点表达式 -->
 		<aop:pointcut
-			expression="execution(* com.xqy.service.*.*(..))" id="pointcut" />
+			expression="execution(* com.xqy.cms.service.*.*(..))" id="pointcut" />
 		<!-- 关联事务 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
 

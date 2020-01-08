@@ -6,18 +6,18 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.xqy.dao.UserDao;
-import com.xqy.entity.User;
+import com.xqy.cms.dao.ArticleDao;
+import com.xqy.cms.entity.Article;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring-beans.xml")
 public class Test {
 	
 	@Resource
-	private UserDao userDao;
+	private ArticleDao articleDao;
 	@org.junit.Test
 	public void test() {
-		User user = userDao.selectById(177);
+		Article user = articleDao.selectById(1);
 		System.out.println(user);
 	}
 	
