@@ -1,0 +1,12 @@
+#header {
+	background-color: #222;
+}
+
+#header ul li a {
+	font-size: 14px;
+	color: #fff;
+}
+
+#header ul li a:hover {
+	color: #999;
+}
